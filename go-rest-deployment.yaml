@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-rest
+  namespace: awesome-golang
+spec:
+  selector:
+    matchLabels:
+      app: go-rest
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-rest
+    spec:
+      containers:
+        - name: go-rest
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/awesome-golang/golang-rest@sha256:b9d54fc5eee8c9a52e1bb32f86594172a9e884461548a7cb672d407ae695b813
+          ports:
+            - containerPort: 8080
